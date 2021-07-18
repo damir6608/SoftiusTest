@@ -1,0 +1,82 @@
+﻿
+@{
+    Layout =null;
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+
+    @if (PartyInvites.Models.Repository.Succes)
+    {
+        <title>
+            Кто узнает про @PartyInvites.Models.Repository.Event
+        </title>
+    }
+    else
+    {
+        <title>
+            Произошла ошибочка :(
+        </title>
+    }
+
+    <link rel="stylesheet" href="/css/styles.css" />
+    <link rel="stylesheet" href="/lib/bootstrap/dist/css/bootstrap.css" />
+</head>
+<body>
+    <div class="panel">
+        <div class="panel-heading panel-footer text-right">
+            <h4><img src="~/images/ek.png" height="40" width="40" alt="aloha" /> ЕстьКонтакт!</h4>
+
+        </div>
+        <form class="p-a-1">
+            <div class="form-group">
+                @if (PartyInvites.Models.Repository.Succes)
+                {
+                <label class="text-center">
+                    Хей, привет! Все прошло отлично ты велел, чтобы я оповестил ровно столько студентов @PartyInvites.Models.Repository.StudentsNum.ToString() .
+                    Ты можешь быть спокоен, они точно все узнают про @PartyInvites.Models.Repository.Event . Вот количество сообщений которое мне понадобилось  @PartyInvites.Models.Repository.MessagesNum .
+                    Я правда старался их экономить и думаю что у меня это получилось ;)
+                </label>
+                    <hr />
+                    <label>
+                        Исходные данные количетсва сообщений: @foreach (var l in PartyInvites.Models.Repository.Responses)
+                        {
+                            <label>@l</label>
+                        }
+                    </label>
+                    <hr />
+                    
+                    <label>Вот как это было: </label>
+                    <hr />
+                    <label>
+                        @for (int i = 0; i < PartyInvites.Models.Repository.History.Length; i++)
+                        {
+                            <span> @PartyInvites.Models.Repository.History[i]</span>
+                            if (PartyInvites.Models.Repository.History[i].Equals(';'))
+                            {
+                                <br />
+                                <hr />
+                            }
+                            if (PartyInvites.Models.Repository.History[i].Equals(' '))
+                            {
+                                <label>&nbsp</label>
+                            }
+                        }
+                    </label>
+                }
+                else
+                {
+                    <label>Что-то пошло не так :(</label>
+                    <hr />
+                    <label>
+                        @PartyInvites.Models.Repository.History
+                    </label>
+                    <hr />
+                }
+
+            </div>
+        </form>
+    </div>
+</body>
+</html>

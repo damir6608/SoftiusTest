@@ -1,0 +1,56 @@
+﻿@model PartyInvites.Models.Responce
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>ЕстьКонтакт!</title>
+    <script src="~/js/site.js"></script>
+    <link rel="stylesheet" href="/css/styles.css" />
+    <link rel="stylesheet" href="/lib/bootstrap/dist/css/bootstrap.css" />
+</head>
+<body>
+    <div class="panel">
+
+        <div class="panel-heading panel-footer text-right">
+            <h4><img src="~/images/ek.png" height="40" width="40" alt="aloha" /> ЕстьКонтакт!</h4>
+            
+        </div>
+        <div class="panel-body">
+            <form class="p-a-1" asp-action="ListResponses" method="post" id="MainForm">
+                <div asp-validation-summary="All"></div>
+                <div class="form-group">
+                    <label>Введите количество студентов:</label>
+                    <input type="number" name="LabelStudentsNumber" id="LabelStudentsNumber" oninput="StudentsNumHandler()" onblur="CreateFields()" class="form-control" asp-for="StudentsNum" />
+                </div>
+                <div name="inputStudents" id="inputStudents"></div>
+                <label>Введите ограничения сообщений по каждому пользователю:</label>
+                <div id="MessageLimitField" class="form-group">
+                    <h1> </h1>
+                    <div name="LimitFields" id="LimitFields"></div>
+                </div>
+
+                <div class="form-group">
+
+                    <label>Выбери новость:</label>
+                    <select class="form-control" asp-for="Event" id="comboBox" name="comboBoxValue">
+                        <option value="зачет по информатике">Зачет по информатике</option>
+                        <option value="день рождения друга/подруги">День рождения друга/подруги</option>
+                        <option value="конец света">Конец света</option>
+                        <option value="вечеринку">Вечеринка</option>
+                        <option value="олимпиаду">Олимпиада</option>
+                        <option value="запуск SpaceX">Запуск SpaceX</option>
+                    </select>
+                </div>
+                <div class="text-center">
+                    <button class="btn btn-primary" onclick="Submit()" id="SubmitBtn" type="submit" disabled>
+                        Подтвердить
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+</html>
